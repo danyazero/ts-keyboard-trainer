@@ -1,0 +1,6 @@
+.bricks {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    align-items: center;
+}

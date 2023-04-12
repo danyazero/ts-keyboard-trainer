@@ -1,0 +1,9 @@
+.brick {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+}
