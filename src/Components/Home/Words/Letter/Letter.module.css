@@ -1,0 +1,8 @@
+@font-face {
+    font-family: machine;
+    src: url('https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@100&display=swap');
+}
+
+.letter{
+    font-size: 22px;
+}

@@ -2,7 +2,7 @@ import {connect} from "react-redux";
 import {Dispatch} from "@reduxjs/toolkit";
 import Keys from "./Keys";
 import {RootState} from "../../../Redux/store";
-import {addSelected} from "../../../Redux/home";
+import {addSelected, getWordsAPI, initialize} from "../../../Redux/home";
 
 export type propsKeysType = {
     letters: string
@@ -15,13 +15,17 @@ function mapStateToProps(state: RootState): propsKeysType {
 }
 
 export type dPropsKeysType = {
-    addLetter(letter: string): any
+    addLetter(letter: string): any,
+    createWord(): any
 }
 
 function mapDispatchToProps(dispatch: Dispatch<any>): dPropsKeysType {
     return {
         addLetter(letter: string) {
             dispatch(addSelected(letter))
+        },
+        createWord(){
+            dispatch(getWordsAPI())
         }
     }
 }
