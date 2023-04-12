@@ -16,7 +16,10 @@ const Home = createSlice(
         initialState,
         reducers: {
             addSelected(state: homeType, action: PayloadAction<string>) {
-                state.selected.push(action.payload)
+                const index: number = state.selected.findIndex(el => el == action.payload)
+                if (index == -1){
+                    state.selected.push(action.payload)
+                }else state.selected.splice(index, 1)
 
                 return state
             }
