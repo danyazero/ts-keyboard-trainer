@@ -5,20 +5,15 @@ import {KeysContainer} from "./Keys/KeysContainer";
 import {WordsContainer} from "./Words/WordsContainer";
 
 const Home: FC<propsHomeType & dPropsHomeType> = (props) => {
-
-    const [value, setValue] = useState("")
-
-    // useEffect(()=> {
-    //     props.createWord()
-    // }, [props.selected])
     const keyPressed = (e: any) => {
         if (e.key.length  == 1){
-            setValue(prevState => prevState + e.key)
+            props.checkSpell(e.key)
         }
     }
 
     return (
         <><div className={st.home} onKeyDown={keyPressed} tabIndex={0}>
+            <h2>{props.errors}</h2>
             <KeysContainer/>
             <WordsContainer/>
             </div>

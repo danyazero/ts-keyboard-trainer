@@ -3,13 +3,17 @@ import {getWordsReq} from "./api";
 
 export type homeType = {
     letters: string
+    errorCounter: number,
     word: string,
     words: number,
-    selected: string[]
+    selected: string[],
+    letterId: number
 }
 
 const initialState: homeType = {
     letters: "abcdefghijklmnopqrstuvwxyz",
+    errorCounter: 0,
+    letterId: -1,
     word: "",
     words: 5,
     selected: []
@@ -25,7 +29,17 @@ const Home = createSlice(
                 // for (let i = 0; i < state.words; i++) {
                 //     randomWord += " " + state.selected.sort((a, b) => 0.5 - Math.random()).join("")
                 // }
-                state.word = action.payload.join(" ").trim()
+                state.letterId = -1
+                state.errorCounter = 0
+                state.word = action.payload.sort((a, b) => 0.5 - Math.random()).join(" ").trim()
+                console.log(state.word.length)
+                return state;
+            },
+            checkSpell(state: homeType, action: PayloadAction<string>){
+                if (state.word[state.letterId + 1] === action.payload){
+                    state.letterId++
+                } else state.errorCounter++
+
                 return state;
             },
             addSelected(state: homeType, action: PayloadAction<string>) {
@@ -46,11 +60,17 @@ export const getWordsAPI = createAsyncThunk(
         const state = thunkAPI.getState()
         const selected: string = state.home.selected.join("")
         const {data} = await getWordsReq(selected);
-        const wordsArray = data.word_pages[0].word_list.map((el: {word: string, points: number, wildcards: Array<any>}) => el.word);
 
-        thunkAPI.dispatch(createWordLine(wordsArray))
+        if (data.word_pages.length >= 1) {
+            let wordsArray: string[] = []
+            for (let i = 0; i < data.word_pages.length; i++){
+                wordsArray = [...wordsArray, ...data.word_pages[i].word_list.map((el: {word: string, points: number, wildcards: Array<any>}) => el.word)]
+                if (wordsArray.length >= 25) break
+            }
+            thunkAPI.dispatch(createWordLine(wordsArray))
+        }
     }
 )
 
 export default Home.reducer;
-export const {addSelected, createWordLine} = Home.actions
+export const {addSelected, createWordLine, checkSpell} = Home.actions
