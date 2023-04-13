@@ -16,7 +16,7 @@ const initialState: homeType = {
     letterId: -1,
     word: "",
     words: 5,
-    selected: []
+    selected: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 }
 
 const Home = createSlice(
@@ -65,7 +65,7 @@ export const getWordsAPI = createAsyncThunk(
             let wordsArray: string[] = []
             for (let i = 0; i < data.word_pages.length; i++){
                 wordsArray = [...wordsArray, ...data.word_pages[i].word_list.map((el: {word: string, points: number, wildcards: Array<any>}) => el.word)]
-                if (wordsArray.length >= 25) break
+                if (wordsArray.length >= 30) break
             }
             thunkAPI.dispatch(createWordLine(wordsArray))
         }

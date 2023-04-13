@@ -6,7 +6,7 @@ type brickType = {
     addLetter(letter: string): any
 }
 const Brick: FC<brickType> = (props) => {
-    const [active, setActive] = useState(false)
+    const [active, setActive] = useState(true)
     const addLetter = () => {
         setActive(!active)
         props.addLetter(props.letter)
