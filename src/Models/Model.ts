@@ -1,5 +1,6 @@
 export enum LetterStatusEnum {
     NORMAL = 'normal',
     ERROR = 'error',
-    RIGHT = 'right'
+    RIGHT = 'right',
+    CORRECTED = 'corrected'
 }

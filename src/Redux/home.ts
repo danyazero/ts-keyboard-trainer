@@ -40,8 +40,10 @@ const Home = createSlice(
                 if (state.word[state.letterId + 1] === action.payload){
                     state.letterId++
                 } else {
-                    state.errorCounter++
-                    state.errorLetters.push(state.letterId + 1)
+                    if (!state.errorLetters.includes(state.letterId + 1)){
+                        state.errorCounter++
+                        state.errorLetters.push(state.letterId + 1)
+                    }
                 }
 
                 return state;

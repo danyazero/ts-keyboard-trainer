@@ -12,5 +12,10 @@
 }
 
 :global(.normal){
-    color: #646cff;
+    color: whitesmoke;
+}
+
+:global(.corrected){
+    color: greenyellow;
+    text-decoration: underline overline red;
 }

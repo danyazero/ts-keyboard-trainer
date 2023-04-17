@@ -7,15 +7,15 @@ import {LetterStatusEnum} from "../../../Models/Model";
 const Words: FC<propsWordsType & dPropsWordsType> = (props) => {
 
     function correctnessLetters(id: number, filled: number, errors: number[]): LetterStatusEnum{
-        if (id <= filled){
-            debugger
+        if (id <= filled && !errors.includes(id)){
             return LetterStatusEnum.RIGHT
         }
+        if (id <= filled && errors.includes(id)){
+            return LetterStatusEnum.CORRECTED
+        }
         if (errors.includes(id)){
-            debugger
             return  LetterStatusEnum.ERROR
         }
-        debugger
         return LetterStatusEnum.NORMAL
     }
 
