@@ -7,12 +7,14 @@ export type homeType = {
     word: string,
     words: number,
     selected: string[],
-    letterId: number
+    letterId: number,
+    errorLetters: number[]
 }
 
 const initialState: homeType = {
     letters: "abcdefghijklmnopqrstuvwxyz",
     errorCounter: 0,
+    errorLetters: [],
     letterId: -1,
     word: "",
     words: 5,
@@ -25,25 +27,29 @@ const Home = createSlice(
         initialState,
         reducers: {
             createWordLine: (state: homeType, action: PayloadAction<string[]>) => {
-                // let randomWord: string = "";
-                // for (let i = 0; i < state.words; i++) {
-                //     randomWord += " " + state.selected.sort((a, b) => 0.5 - Math.random()).join("")
-                // }
                 state.letterId = -1
                 state.errorCounter = 0
+                state.errorLetters = []
+
                 state.word = action.payload.sort((a, b) => 0.5 - Math.random()).join(" ").trim()
-                console.log(state.word.length)
+
                 return state;
             },
             checkSpell(state: homeType, action: PayloadAction<string>){
+
                 if (state.word[state.letterId + 1] === action.payload){
                     state.letterId++
-                } else state.errorCounter++
+                } else {
+                    state.errorCounter++
+                    state.errorLetters.push(state.letterId + 1)
+                }
 
                 return state;
             },
             addSelected(state: homeType, action: PayloadAction<string>) {
+
                 const index: number = state.selected.findIndex(el => el == action.payload)
+
                 if (index == -1) {
                     state.selected.push(action.payload)
                 } else state.selected.splice(index, 1)

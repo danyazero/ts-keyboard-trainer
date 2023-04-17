@@ -7,13 +7,14 @@ import {checkSpell} from "../../../Redux/home";
 export type propsWordsType = {
     letterId: number,
     word: string,
+    errorLetters: number[]
 }
 
 function mapStateToProps(state: RootState): propsWordsType{
     return{
         word: state.home.word,
         letterId: state.home.letterId,
-
+        errorLetters: state.home.errorLetters
     }
 }
 

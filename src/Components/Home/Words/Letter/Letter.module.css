@@ -2,3 +2,15 @@
 .letter{
     font-size: 22px;
 }
+
+:global(.right){
+    color: greenyellow;
+}
+
+:global(.error){
+    color: red;
+}
+
+:global(.normal){
+    color: #646cff;
+}

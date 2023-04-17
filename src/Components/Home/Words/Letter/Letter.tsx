@@ -1,10 +1,11 @@
 import React, {FC} from 'react';
 import st from "./Letter.module.css"
+import {LetterStatusEnum} from "../../../../Models/Model";
 
-const Letter: FC<{letter: string, isCorrect: boolean}> = (props) => {
+const Letter: FC<{letter: string, isCorrect: LetterStatusEnum}> = (props) => {
     return (
         <>
-            <p className={st.letter} style={{color: props.isCorrect ? "green" : "whitesmoke"}}>
+            <p className={st.letter + " " + props.isCorrect}>
                 {props.letter == " " ? "_" : props.letter}
             </p>
         </>
