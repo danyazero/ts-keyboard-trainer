@@ -12,7 +12,7 @@ const Keys: FC<propsKeysType & dPropsKeysType> = (props) => {
         <div className={st.bricks}>
             <h2>All Keys</h2>
             {bricks}
-            <button disabled={props.word.length != props.id + 1} onClick={() => {props.createWord()}}>Start</button>
+            <button disabled={props.started} onClick={() => {props.createWord()}}>Start</button>
         </div>
     )
 };

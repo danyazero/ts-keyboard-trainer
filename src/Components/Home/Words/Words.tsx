@@ -10,9 +10,6 @@ const Words: FC<propsWordsType & dPropsWordsType> = (props) => {
         if (id <= filled && !errors.includes(id)){
             return LetterStatusEnum.RIGHT
         }
-        if (id <= filled && errors.includes(id)){
-            return LetterStatusEnum.CORRECTED
-        }
         if (errors.includes(id)){
             return  LetterStatusEnum.ERROR
         }

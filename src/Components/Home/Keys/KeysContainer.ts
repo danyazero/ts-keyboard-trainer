@@ -6,15 +6,17 @@ import {addSelected, getWordsAPI} from "../../../Redux/home";
 
 export type propsKeysType = {
     letters: string,
-    word: string
-    id: number
+    word: string,
+    id: number,
+    started: boolean
 }
 
 function mapStateToProps(state: RootState): propsKeysType {
     return {
         letters: state.home.letters,
         word: state.home.word,
-        id: state.home.letterId
+        id: state.home.letterId,
+        started: state.home.started
     }
 }
 

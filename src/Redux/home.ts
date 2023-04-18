@@ -5,6 +5,7 @@ export type homeType = {
     letters: string
     errorCounter: number,
     word: string,
+    started: boolean,
     words: number,
     selected: string[],
     letterId: number,
@@ -15,6 +16,7 @@ const initialState: homeType = {
     letters: "abcdefghijklmnopqrstuvwxyz",
     errorCounter: 0,
     errorLetters: [],
+    started: false,
     letterId: -1,
     word: "",
     words: 5,
@@ -27,6 +29,7 @@ const Home = createSlice(
         initialState,
         reducers: {
             createWordLine: (state: homeType, action: PayloadAction<string[]>) => {
+                state.started = true
                 state.letterId = -1
                 state.errorCounter = 0
                 state.errorLetters = []
@@ -35,15 +38,21 @@ const Home = createSlice(
 
                 return state;
             },
-            checkSpell(state: homeType, action: PayloadAction<string>){
+            stopGame: (state: homeType) => {
+                state.started = false
 
-                if (state.word[state.letterId + 1] === action.payload){
-                    state.letterId++
-                } else {
-                    if (!state.errorLetters.includes(state.letterId + 1)){
-                        state.errorCounter++
-                        state.errorLetters.push(state.letterId + 1)
+                return state;
+            },
+            checkSpell(state: homeType, action: PayloadAction<string>) {
+
+                if (state.started){
+                    if (state.word[state.letterId + 1] !== action.payload) {
+                        if (!state.errorLetters.includes(state.letterId + 1)) {
+                            state.errorCounter++
+                            state.errorLetters.push(state.letterId + 1)
+                        }
                     }
+                    state.letterId++
                 }
 
                 return state;
@@ -71,8 +80,12 @@ export const getWordsAPI = createAsyncThunk(
 
         if (data.word_pages.length >= 1) {
             let wordsArray: string[] = []
-            for (let i = 0; i < data.word_pages.length; i++){
-                wordsArray = [...wordsArray, ...data.word_pages[i].word_list.map((el: {word: string, points: number, wildcards: Array<any>}) => el.word)]
+            for (let i = 0; i < data.word_pages.length; i++) {
+                wordsArray = [...wordsArray, ...data.word_pages[i].word_list.map((el: {
+                    word: string,
+                    points: number,
+                    wildcards: Array<any>
+                }) => el.word)]
                 if (wordsArray.length >= 30) break
             }
             thunkAPI.dispatch(createWordLine(wordsArray))
@@ -81,4 +94,4 @@ export const getWordsAPI = createAsyncThunk(
 )
 
 export default Home.reducer;
-export const {addSelected, createWordLine, checkSpell} = Home.actions
+export const {addSelected, stopGame, createWordLine, checkSpell} = Home.actions
