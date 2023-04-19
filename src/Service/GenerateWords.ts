@@ -1,9 +1,5 @@
 import {wordsPagesI} from "../Models/Model";
-
-
-function getRandomNum(min: number, max: number): number {
-    return Math.floor(Math.random() * (max - min) + min)
-}
+import {getRandomNum} from "./Service";
 
 export function generateRandomWords(letters: string[], words: wordsPagesI[]): string {
     let wordsArray: string[] = []

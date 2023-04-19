@@ -16,7 +16,11 @@ const Words: FC<propsWordsType & dPropsWordsType> = (props) => {
         return LetterStatusEnum.NORMAL
     }
 
-    const word = [...props.word].map((el, id) => <Letter isCorrect={correctnessLetters(id, props.letterId, props.errorLetters)} key={"letter_" + id} letter={el}/>)
+    const sides: number = 20;
+    const start = props.letterId > sides ? props.letterId - sides : 0
+    const end = props.letterId + sides <= props.word.length ? props.letterId + sides : props.word.length
+
+    const word = [...props.word].map((el, index) => { if (!props.started || start <= index && index <= end) return <Letter isCorrect={correctnessLetters(index, props.letterId, props.errorLetters)} key={"letter_" + index} letter={el}/>})
 
     return (
         <div className={st.container}>

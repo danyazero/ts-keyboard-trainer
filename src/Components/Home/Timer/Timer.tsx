@@ -12,14 +12,16 @@ const Timer: FC<dTimerPropsType & timerPropsType> = (props) =>{
 
     useEffect(() => {
         if (time === 0){
+            console.log("cleared")
             clearInterval(timer)
             props.stopGame()
         }
     }, [time])
 
     useEffect(() => {
-        console.log("create timer")
         if (props.started) {
+            console.log("create timer")
+            setTime(85)
             let timerId = setInterval(timerTick, 1000, time);
             setTimer(timerId)
         } else clearInterval(timer)

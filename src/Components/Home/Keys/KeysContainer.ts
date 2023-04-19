@@ -14,7 +14,7 @@ export type propsKeysType = {
 function mapStateToProps(state: RootState): propsKeysType {
     return {
         letters: state.home.letters,
-        word: state.home.word,
+        word: state.home.randomWordsLine,
         id: state.home.letterId,
         started: state.home.started
     }
