@@ -21,17 +21,13 @@ function mapStateToProps(state: RootState): propsHomeType {
 }
 
 export type dPropsHomeType = {
-    checkSpell(letter: string): void,
-    stopGame(): void
+    checkSpell(letter: string): void
 }
 
 function mapDispatchToProps(dispatch: Dispatch<any>): dPropsHomeType {
     return {
         checkSpell(letter: string){
             dispatch(checkSpell(letter))
-        },
-        stopGame(){
-            dispatch(stopGame())
         }
     }
 }

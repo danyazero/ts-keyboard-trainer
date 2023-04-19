@@ -50,6 +50,7 @@ const Home = createSlice(
                 if (state.started){
                     if (state.word[state.letterId + 1] !== action.payload) {
                         if (!state.errorLetters.includes(state.letterId + 1)) {
+                            new Audio("/error.mp3").play();
                             state.errorCounter++
                             state.errorLetters.push(state.letterId + 1)
                         }
