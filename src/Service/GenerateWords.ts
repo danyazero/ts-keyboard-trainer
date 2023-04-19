@@ -1,15 +1,17 @@
 import {wordsPagesI} from "../Models/Model";
-import {getRandomNum} from "./Service";
+import {getRandomNum, shuffle} from "./Service";
 
 export function generateRandomWords(letters: string[], words: wordsPagesI[]): string {
+    let randomOrderArray = shuffle([...Array(10).keys()])
     let wordsArray: string[] = []
-    while (wordsArray.length < 30) {
-        let randomPage = getRandomNum(0, words.length)
-        wordsArray = [...wordsArray, ...words[randomPage].word_list.map((el: {
+    let i = 0
+    while (wordsArray.length < 35) {
+        wordsArray = [...wordsArray, ...words[randomOrderArray[i]].word_list.map((el: {
             word: string,
             points: number,
             wildcards: Array<any>
         }) => el.word)]
+        i++
     }
     return wordsArray.sort((a, b) => 0.5 - Math.random()).join(" ").trim();
 }

@@ -3,7 +3,7 @@ import {dTimerPropsType, timerPropsType} from "./TimerContainer";
 
 const Timer: FC<dTimerPropsType & timerPropsType> = (props) =>{
 
-    const [time, setTime] = useState(85)
+    const [time, setTime] = useState(60)
     const [timer, setTimer] = useState(0)
 
     const timerTick = () => {
@@ -21,7 +21,7 @@ const Timer: FC<dTimerPropsType & timerPropsType> = (props) =>{
     useEffect(() => {
         if (props.started) {
             console.log("create timer")
-            setTime(85)
+            setTime(60)
             let timerId = setInterval(timerTick, 1000, time);
             setTimer(timerId)
         } else clearInterval(timer)
