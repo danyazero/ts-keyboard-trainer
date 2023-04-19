@@ -2,7 +2,7 @@ import {connect} from "react-redux";
 import {Dispatch} from "@reduxjs/toolkit";
 import Keys from "./Keys";
 import {RootState} from "../../../Redux/store";
-import {addSelected, getWordsAPI} from "../../../Redux/home";
+import {addSelected, createWordLine, getWordsAPI} from "../../../Redux/home";
 
 export type propsKeysType = {
     letters: string,

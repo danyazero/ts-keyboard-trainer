@@ -5,7 +5,7 @@ import {KeysContainer} from "./Keys/KeysContainer";
 import {WordsContainer} from "./Words/WordsContainer";
 
 const Home: FC<propsHomeType & dPropsHomeType> = (props) => {
-    const [time, setTime] = useState(120)
+    const [time, setTime] = useState(85)
     const [timer, setTimer] = useState(0)
     function keyPressed(e: any) {
         debugger
