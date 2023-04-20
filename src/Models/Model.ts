@@ -4,15 +4,15 @@ export enum LetterStatusEnum {
     RIGHT = 'right',
 }
 
-export interface wordsPagesI{
-    word_list: Array<wordType>,
+export interface IWordsPages {
+    word_list: Array<WordType>,
     length: number,
     num_words: number,
     num_pages: number,
     current_page: number
 }
 
-export type wordType = {
+export type WordType = {
     word: string,
     points: number,
     wildcards: Array<any>

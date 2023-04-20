@@ -3,7 +3,30 @@
     align-items: center;
     justify-content: center;
     align-content: center;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     border-radius: 5px;
+}
+
+.brick:hover{
+    opacity: 80%;
+}
+
+.active{
+    background: forestgreen;
+    color: white;
+}
+
+.normal{
+    background: #213547;
+    color: white;
+
+    outline: gray;
+}
+
+@media (prefers-color-scheme: light) {
+    .normal{
+        background: whitesmoke;
+        color: black;
+    }
 }

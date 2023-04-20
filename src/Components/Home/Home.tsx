@@ -4,6 +4,7 @@ import st from "./Home.module.css"
 import {KeysContainer} from "./Keys/KeysContainer";
 import {WordsContainer} from "./Words/WordsContainer";
 import {TimerContainer} from "./Timer/TimerContainer";
+import {ResultsContainer} from "./Results/ResultsContainer";
 
 const Home: FC<propsHomeType & dPropsHomeType> = (props) => {
     function keyPressed(e: any) {
@@ -16,13 +17,12 @@ const Home: FC<propsHomeType & dPropsHomeType> = (props) => {
         window.addEventListener('keydown', keyPressed)
     }, [])
 
-
-
     return (
         <>
             <div className={st.home}>
-                <TimerContainer/>
-                <h2>Length: {props.length + 1} Errors: {props.errors} {props.symbolsPerSecond ? "Per second: " + props.symbolsPerSecond : ""}</h2>
+                {
+                    props.started ? <TimerContainer/> : <ResultsContainer/>
+                }
                 <KeysContainer/>
                 <WordsContainer/>
             </div>

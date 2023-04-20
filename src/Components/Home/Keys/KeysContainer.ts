@@ -15,7 +15,7 @@ function mapStateToProps(state: RootState): propsKeysType {
     return {
         letters: state.home.letters,
         word: state.home.randomWordsLine,
-        id: state.home.letterId,
+        id: state.home.currentLetterIndex,
         started: state.home.started
     }
 }

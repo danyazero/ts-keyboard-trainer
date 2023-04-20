@@ -13,8 +13,8 @@ const Brick: FC<brickType> = (props) => {
     }
     return (
         <>
-            <div onClick={addLetter} style={{background: active ? "forestgreen" : "cadetblue"}}
-                 className={st.brick}>{props.letter}</div>
+            <div onClick={addLetter}
+                 className={st.brick + " " + (active ? st.active : st.normal)}>{props.letter}</div>
         </>
     )
 };

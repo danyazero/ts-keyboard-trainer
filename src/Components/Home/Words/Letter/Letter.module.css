@@ -16,7 +16,13 @@
     color: #667587;
 }
 
-:global(.corrected){
-    color: yellow;
-    text-decoration: underline overline red;
+@media (prefers-color-scheme: light) {
+    :global(.right){
+        color: white;
+        background-color: forestgreen;
+    }
+    :global(.error){
+        color: white;
+        background-color: red;
+    }
 }
