@@ -8,7 +8,8 @@ export type propsHomeType = {
     selected: string[],
     errors: number,
     length: number,
-    started: boolean
+    started: boolean,
+    symbolsPerSecond: number
 }
 
 function mapStateToProps(state: RootState): propsHomeType {
@@ -16,7 +17,8 @@ function mapStateToProps(state: RootState): propsHomeType {
         selected: state.home.selected,
         errors: state.home.errorCounter,
         length: state.home.letterId,
-        started: state.home.started
+        started: state.home.started,
+        symbolsPerSecond: state.home.symbolsPerSecond
     }
 }
 

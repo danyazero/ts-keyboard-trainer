@@ -18,3 +18,18 @@ export function shuffle(array: number[]) {
     }
     return array;
 }
+
+export function symbolsPerSecondAverage(timeStamp: number[]){
+    return Math.floor(1000 / calculateAverage(timeStamp))
+}
+
+export function calculateAverage(timeStamps: number[]){
+    let calculatedTime: number[] = []
+
+    for (let i = 1; i < timeStamps.length; i++){
+        calculatedTime.push(timeStamps[i-1] - timeStamps[i])
+        //9 8 7 3 2
+    }
+
+    return Math.floor(calculatedTime.reduce((a, b) => a + b) / calculatedTime.length);
+}

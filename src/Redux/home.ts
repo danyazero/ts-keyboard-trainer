@@ -1,8 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {getWordsReq} from "./api";
-import {wordType} from "../Models/Model";
 import {generateRandomWords} from "../Service/GenerateWords";
-import {cutWordsFromRange} from "../Service/Service";
+import {calculateAverage, symbolsPerSecondAverage} from "../Service/Service";
 
 export type homeType = {
     letters: string
@@ -11,14 +10,18 @@ export type homeType = {
     started: boolean,
     selected: string[],
     letterId: number,
+    timeStamp: number[]
     lineForRender: string,
-    errorLetters: number[]
+    errorLetters: number[],
+    symbolsPerSecond: number
 }
 
 const initialState: homeType = {
     letters: "abcdefghijklmnopqrstuvwxyz",
     errorCounter: 0,
     errorLetters: [],
+    symbolsPerSecond: 0,
+    timeStamp: [],
     started: false,
     letterId: -1,
     lineForRender: "",
@@ -45,18 +48,21 @@ const Home = createSlice(
             },
             stopGame: (state: homeType) => {
                 state.started = false
+                state.symbolsPerSecond = symbolsPerSecondAverage(state.timeStamp.reverse())
 
                 return state;
             },
             checkSpell(state: homeType, action: PayloadAction<string>) {
                 if (state.started){
                     if (state.randomWordsLine[state.letterId + 1] !== action.payload) {
+
                         if (!state.errorLetters.includes(state.letterId + 1)) {
                             new Audio("/error.mp3").play();
                             state.errorCounter++
                             state.errorLetters.push(state.letterId + 1)
                         }
-                    }
+
+                    }else state.timeStamp.push(new Date().getTime())
                     state.letterId++
                 }
 

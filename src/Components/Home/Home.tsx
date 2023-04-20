@@ -22,7 +22,7 @@ const Home: FC<propsHomeType & dPropsHomeType> = (props) => {
         <>
             <div className={st.home}>
                 <TimerContainer/>
-                <h2>Length: {props.length + 1} Errors: {props.errors}</h2>
+                <h2>Length: {props.length + 1} Errors: {props.errors} {props.symbolsPerSecond ? "Per second: " + props.symbolsPerSecond : ""}</h2>
                 <KeysContainer/>
                 <WordsContainer/>
             </div>
