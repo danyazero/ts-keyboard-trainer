@@ -7,11 +7,12 @@ import {TimerContainer} from "./Timer/TimerContainer";
 import {ResultsContainer} from "./Results/ResultsContainer";
 import ToggleSwitch from "../../Abstract/ToggleSwitch/ToggleSwitch";
 import {setAudioStatus} from "../../Redux/home";
+import {KeyboardContainer} from "../Keyboard/KeyboardContainer";
 
 const Home: FC<propsHomeType & dPropsHomeType> = (props) => {
     function keyPressed(e: any) {
         if (e.key.length == 1) {
-            props.checkSpell(e.key)
+            props.checkSpell(e.keyCode)
         }
     }
 
@@ -31,6 +32,7 @@ const Home: FC<propsHomeType & dPropsHomeType> = (props) => {
                 }
                 <KeysContainer/>
                 <WordsContainer/>
+                {props.started ? <KeyboardContainer/> : ""}
             </div>
         </>
     )

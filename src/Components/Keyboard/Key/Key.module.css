@@ -1,0 +1,27 @@
+.key{
+    height: 45px;
+    width: 45px;
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.key:nth-child(10){
+    break-after: always;
+}
+
+.key:nth-child(19){
+    break-after: always;
+}
+
+.active{
+    background: forestgreen;
+    color: white;
+}
+
+.normal{
+    background: whitesmoke;
+    color: black;
+}

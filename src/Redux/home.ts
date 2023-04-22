@@ -18,13 +18,15 @@ export type homeType = {
     isPlayAudio: boolean,
     isTimer: boolean,
     errorLetters: number[],
-    symbolsPerSecond: number
+    symbolsPerSecond: number,
+    lastActive: string
 }
 
 const initialState: homeType = {
-    letters: "abcdefghijklmnopqrstuvwxyz",
+    letters: "qwertyuiopasdfghjklzxcvbnm",
     errorCounter: 0,
     errorLetters: [],
+    lastActive: "",
     symbolsPerSecond: 0,
     timeStamp: [],
     started: false,
@@ -71,10 +73,13 @@ const Home = createSlice(
 
                 return state;
             },
-            checkSpell(state: homeType, action: PayloadAction<string>) {
+            checkSpell(state: homeType, action: PayloadAction<number>) {
                 if (state.started) {
 
-                    if (state.randomWordsLine[state.currentLetterIndex + 1] !== action.payload) {
+                    let letterFromCharCode: string = String.fromCharCode(action.payload).toLowerCase()
+                    state.lastActive = letterFromCharCode;
+
+                    if (state.randomWordsLine[state.currentLetterIndex + 1] !== letterFromCharCode) {
 
                         if (!state.errorLetters.includes(state.currentLetterIndex + 1)) {
                             if (state.isPlayAudio) audioError.play();

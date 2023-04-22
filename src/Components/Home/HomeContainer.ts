@@ -21,15 +21,15 @@ function mapStateToProps(state: RootState): propsHomeType {
 }
 
 export type dPropsHomeType = {
-    checkSpell(letter: string): void,
+    checkSpell(charCode: number): void,
     setAudioStatus(status: boolean): void,
     setTimerStatus(status: boolean): void
 }
 
 function mapDispatchToProps(dispatch: Dispatch<any>): dPropsHomeType {
     return {
-        checkSpell(letter: string){
-            dispatch(checkSpell(letter))
+        checkSpell(charCode: number){
+            dispatch(checkSpell(charCode))
         },
         setAudioStatus(status: boolean){
             dispatch(setAudioStatus(status))
