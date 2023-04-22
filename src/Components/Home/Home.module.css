@@ -3,3 +3,11 @@
     height: 100%;
     width: 100%;
 }
+
+.settingsBar{
+    position: fixed;
+    top: 5px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}

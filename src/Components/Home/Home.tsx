@@ -5,6 +5,8 @@ import {KeysContainer} from "./Keys/KeysContainer";
 import {WordsContainer} from "./Words/WordsContainer";
 import {TimerContainer} from "./Timer/TimerContainer";
 import {ResultsContainer} from "./Results/ResultsContainer";
+import ToggleSwitch from "../../Abstract/ToggleSwitch/ToggleSwitch";
+import {setAudioStatus} from "../../Redux/home";
 
 const Home: FC<propsHomeType & dPropsHomeType> = (props) => {
     function keyPressed(e: any) {
@@ -19,9 +21,13 @@ const Home: FC<propsHomeType & dPropsHomeType> = (props) => {
 
     return (
         <>
+            <div className={st.settingsBar}>
+                <ToggleSwitch description={"errorAudioHandler"} checked={props.isPlayAudio} name={"Audio"} onChange={props.setAudioStatus}/>
+                <ToggleSwitch description={"timerStatusHandler"} checked={props.isTimer} name={"Timer"} onChange={props.setTimerStatus}/>
+            </div>
             <div className={st.home}>
                 {
-                    props.started ? <TimerContainer/> : <ResultsContainer/>
+                    props.started ? (props.isTimer ? <TimerContainer/> : ""): (props.length > 0 ? <ResultsContainer/> : "")
                 }
                 <KeysContainer/>
                 <WordsContainer/>

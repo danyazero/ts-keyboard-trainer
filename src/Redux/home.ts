@@ -1,7 +1,11 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {getWordsReq} from "./api";
 import {generateRandomWords} from "../Service/GenerateWords";
-import { symbolsPerSecondAverage} from "../Service/Service";
+import {shuffle, symbolsPerSecondAverage} from "../Service/Service";
+import {RootState} from "./store";
+import home from "../Components/Home/Home";
+
+const audioError = new Audio("/error.mp3")
 
 export type homeType = {
     letters: string
@@ -10,7 +14,9 @@ export type homeType = {
     started: boolean,
     selectedLetters: string[],
     currentLetterIndex: number,
-    timeStamp: number[]
+    timeStamp: number[],
+    isPlayAudio: boolean,
+    isTimer: boolean,
     errorLetters: number[],
     symbolsPerSecond: number
 }
@@ -22,6 +28,8 @@ const initialState: homeType = {
     symbolsPerSecond: 0,
     timeStamp: [],
     started: false,
+    isTimer: true,
+    isPlayAudio: true,
     currentLetterIndex: -1,
     randomWordsLine: "",
     selectedLetters: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
@@ -32,12 +40,27 @@ const Home = createSlice(
         name: "home",
         initialState,
         reducers: {
+            setAudioStatus(state: homeType, action: PayloadAction<boolean>) {
+                state.isPlayAudio = action.payload
+
+                return state;
+            },
+            setTimerStatus(state: homeType, action: PayloadAction<boolean>) {
+                state.isTimer = action.payload
+
+                return state;
+            },
             createWordLine: (state: homeType, action: PayloadAction<string>) => {
                 state.started = true
                 state.currentLetterIndex = -1
                 state.errorCounter = 0
                 state.errorLetters = []
                 state.randomWordsLine = action.payload
+
+                return state;
+            },
+            updateWordsLine: (state: homeType) => {
+                state.randomWordsLine += shuffle(state.randomWordsLine.split(" ")).join(" ")
 
                 return state;
             },
@@ -49,17 +72,17 @@ const Home = createSlice(
                 return state;
             },
             checkSpell(state: homeType, action: PayloadAction<string>) {
-                if (state.started){
+                if (state.started) {
 
                     if (state.randomWordsLine[state.currentLetterIndex + 1] !== action.payload) {
 
                         if (!state.errorLetters.includes(state.currentLetterIndex + 1)) {
-                            new Audio("/error.mp3").play();
+                            if (state.isPlayAudio) audioError.play();
                             state.errorCounter++
                             state.errorLetters.push(state.currentLetterIndex + 1)
                         }
 
-                    }else state.timeStamp.push(new Date().getTime())
+                    } else state.timeStamp.push(new Date().getTime())
 
                     state.currentLetterIndex++
                 }
@@ -96,4 +119,4 @@ export const getWordsAPI = createAsyncThunk(
 )
 
 export default Home.reducer;
-export const {addSelected, stopGame, createWordLine, checkSpell} = Home.actions
+export const {addSelected, updateWordsLine, setTimerStatus, setAudioStatus, stopGame, createWordLine, checkSpell} = Home.actions

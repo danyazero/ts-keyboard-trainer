@@ -2,7 +2,7 @@ export function getRandomNum(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min) + min)
 }
 
-export function shuffle(array: number[]) {
+export function shuffle(array: (number | string)[]) {
     let currentIndex = array.length;
     let randomIndex = 0;
     while (currentIndex != 0) {
@@ -17,7 +17,7 @@ export function shuffle(array: number[]) {
 }
 
 export function symbolsPerSecondAverage(timeStamp: number[]){
-    return (1000 / calculateAverage(timeStamp)).toFixed(2)
+    return parseFloat((1000 / calculateAverage(timeStamp)).toFixed(2))
 }
 
 export function calculateAverage(timeStamps: number[]){

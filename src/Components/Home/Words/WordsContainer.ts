@@ -2,7 +2,7 @@ import {connect} from "react-redux";
 import {Dispatch} from "@reduxjs/toolkit";
 import Words from "./Words";
 import {RootState} from "../../../Redux/store";
-import {checkSpell} from "../../../Redux/home";
+import {checkSpell, updateWordsLine} from "../../../Redux/home";
 
 export type propsWordsType = {
     letterId: number,
@@ -21,12 +21,14 @@ function mapStateToProps(state: RootState): propsWordsType{
 }
 
 export type dPropsWordsType = {
-
+    updateWord(): void
 }
 
 function mapDispatchToProps(dispatch: Dispatch<any>): dPropsWordsType{
     return{
-
+        updateWord(){
+            dispatch(updateWordsLine())
+        }
     }
 }
 

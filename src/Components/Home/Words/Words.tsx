@@ -1,10 +1,16 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import st from "./Words.module.css"
 import {dPropsWordsType, propsWordsType} from "./WordsContainer";
 import Letter from "./Letter/Letter";
 import {LetterStatusEnum} from "../../../Models/Model";
 
 const Words: FC<propsWordsType & dPropsWordsType> = (props) => {
+
+    useEffect(() => {
+        if (props.letterId + 20 >= props.word.length){
+            props.updateWord()
+        }
+    }, [props.letterId])
 
     function correctnessLetters(id: number, filled: number, errors: number[]): LetterStatusEnum{
         if (id <= filled && !errors.includes(id)){
