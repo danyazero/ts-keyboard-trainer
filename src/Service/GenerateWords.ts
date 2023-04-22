@@ -5,7 +5,7 @@ export function generateRandomWords(letters: string[], words: IWordsPages[]): st
     // debugger
     // if (words.length == 0 || letters.length == 0) return ""
 
-    let randomOrderArray = shuffle([...Array(words.length).keys()])
+    let randomOrderArray: number[] = shuffle([...Array(words.length).keys()])
     let wordsArray: (string | undefined)[] = []
     let i = 0
     while (wordsArray.length < 35 && i < words.length) {

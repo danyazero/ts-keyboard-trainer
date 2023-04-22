@@ -25,3 +25,7 @@
     background: whitesmoke;
     color: black;
 }
+
+.marked{
+    border: 1px solid orange;
+}

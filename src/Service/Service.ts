@@ -2,7 +2,7 @@ export function getRandomNum(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min) + min)
 }
 
-export function shuffle(array: (number | string)[]) {
+export function shuffle<T>(array: T[]): T[] {
     let currentIndex = array.length;
     let randomIndex = 0;
     while (currentIndex != 0) {
