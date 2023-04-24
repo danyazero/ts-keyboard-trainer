@@ -1,5 +1,7 @@
 import React, {FC, useEffect, useState} from 'react';
 import {dTimerPropsType, timerPropsType} from "./TimerContainer";
+import st from "./Timer.module.css"
+import clock from "./../../../assets/clock.svg"
 
 const Timer: FC<dTimerPropsType & timerPropsType> = (props) =>{
 
@@ -28,9 +30,10 @@ const Timer: FC<dTimerPropsType & timerPropsType> = (props) =>{
     }, [props.started])
 
     return(
-        <>
-            <h2>Time {time}</h2>
-        </>
+        <div className={st.timerContainer}>
+            <img className={st.clock} src={clock} alt={"time"}/>
+            <p className={st.timer}>{time}c</p>
+        </div>
     )
 };
 

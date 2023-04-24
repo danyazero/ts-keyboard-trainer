@@ -1,0 +1,15 @@
+.timerContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.timer{
+    margin: 0;
+}
+
+.clock{
+    width: 18px;
+    height: 18px;
+}

@@ -5,8 +5,8 @@ import {LetterStatusEnum} from "../../../../Models/Model";
 const Letter: FC<{letter: string, isCorrect: LetterStatusEnum}> = (props) => {
     return (
         <>
-            <p className={st.letter + " " + props.isCorrect}>
-                {props.letter == " " ? "_" : props.letter}
+            <p className={st.letter + " " + props.isCorrect} >
+                {props.letter}
             </p>
         </>
     )

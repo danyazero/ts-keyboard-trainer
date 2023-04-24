@@ -1,7 +1,8 @@
 
 .letter{
     font-family: "Andale Mono", serif;
-    font-size: 22px;
+    font-size: 32px;
+    min-width: 19px;
 }
 
 :global(.right){

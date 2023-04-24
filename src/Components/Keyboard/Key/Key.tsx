@@ -13,6 +13,7 @@ const Key: FC<propsKeyType> = (props) => {
             <div className={st.key + " " + (props.isActive ? st.active : st.normal) + " " + (props.marked ? st.marked : "")}>
                 {props.letter}
             </div>
+                <div className={st.wrapper}></div>
         </>
     )
 };

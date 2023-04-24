@@ -62,7 +62,7 @@ const Home = createSlice(
                 return state;
             },
             updateWordsLine: (state: homeType) => {
-                state.randomWordsLine += shuffle(state.randomWordsLine.split(" ")).join(" ")
+                state.randomWordsLine += " " + shuffle(state.randomWordsLine.split(" ")).join(" ")
 
                 return state;
             },

@@ -9,8 +9,6 @@
 }
 
 .settingsBar{
-    position: fixed;
-    top: 5px;
     display: flex;
     flex-direction: row;
     gap: 15px;
