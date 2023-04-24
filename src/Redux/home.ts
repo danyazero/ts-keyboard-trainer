@@ -19,7 +19,8 @@ export type homeType = {
     isTimer: boolean,
     errorLetters: number[],
     symbolsPerSecond: number,
-    lastActive: string
+    lastActive: string,
+    resultSpeed: number[]
 }
 
 const initialState: homeType = {
@@ -29,6 +30,7 @@ const initialState: homeType = {
     lastActive: "",
     symbolsPerSecond: 0,
     timeStamp: [],
+    resultSpeed: [],
     started: false,
     isTimer: true,
     isPlayAudio: true,
@@ -68,7 +70,9 @@ const Home = createSlice(
             },
             stopGame: (state: homeType) => {
                 state.started = false
-                state.symbolsPerSecond = symbolsPerSecondAverage(state.timeStamp.reverse())
+                const data = symbolsPerSecondAverage(state.timeStamp.reverse())
+                state.symbolsPerSecond = data.average
+                state.resultSpeed = data.array
                 state.timeStamp = []
 
                 return state;

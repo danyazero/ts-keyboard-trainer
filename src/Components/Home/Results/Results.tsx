@@ -5,12 +5,36 @@ import speed from "./../../../assets/speed.svg"
 import error from "./../../../assets/error.svg"
 import length from "./../../../assets/keyboard.svg"
 import StatisticBrick from "../../../Abstract/StatisticBrick/StatisticBrick";
+import EChartsReact from "echarts-for-react";
+import {calculateDataForChart} from "../../../Service/Service";
 
 
 
 const Results: FC<propsResultsType & dPropsResultsType> = (props) => {
 
     const [isClosed, setClosed] = useState(false)
+
+    const arrayForChart = calculateDataForChart(props.resultSpeed, 4)
+
+    const option = {
+        xAxis: {
+            data: [...Array(arrayForChart.length).keys()]
+        },
+        yAxis: {},
+        series: [
+            {
+                data: arrayForChart,
+                type: 'line',
+                smooth: true,
+                areaStyle: {
+                    color: '#5a97ff',
+                    opacity: 0.5
+                }
+            }
+        ]
+    };
+
+    console.log(option.series[0].data)
 
     const data = [
         {
@@ -50,6 +74,8 @@ const Results: FC<propsResultsType & dPropsResultsType> = (props) => {
                 <div className={st.data}>
                     {infoBricks}
                 </div>
+
+            <EChartsReact option={option}/>
 
             </div>
             <div className={st.wrapper + (isClosed ? " " + st.closed : "")}></div>

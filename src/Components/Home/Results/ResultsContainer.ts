@@ -6,14 +6,16 @@ import {RootState} from "../../../Redux/store";
 export type propsResultsType = {
     errors: number,
     length: number,
-    symbolsPerSecond: number
+    symbolsPerSecond: number,
+    resultSpeed: number[]
 }
 
 function mapStateToProps(state: RootState): propsResultsType {
     return {
         errors: state.home.errorCounter,
         length: state.home.currentLetterIndex,
-        symbolsPerSecond: state.home.symbolsPerSecond
+        symbolsPerSecond: state.home.symbolsPerSecond,
+        resultSpeed: state.home.resultSpeed
     }
 }
 

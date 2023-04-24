@@ -17,7 +17,8 @@ export function shuffle<T>(array: T[]): T[] {
 }
 
 export function symbolsPerSecondAverage(timeStamp: number[]){
-    return parseFloat((1000 / calculateAverage(timeStamp)).toFixed(2))
+    const data = calculateAverage(timeStamp)
+    return {average: parseFloat((1000 / data.perSecond).toFixed(2)), array: data.array}
 }
 
 export function calculateAverage(timeStamps: number[]){
@@ -27,5 +28,19 @@ export function calculateAverage(timeStamps: number[]){
         calculatedTime.push(timeStamps[i-1] - timeStamps[i])
     }
 
-    return calculatedTime.reduce((a, b) => a + b) / calculatedTime.length;
+    return {perSecond: calculatedTime.reduce((a, b) => a + b) / calculatedTime.length, array: calculatedTime};
+}
+
+export function calculateDataForChart(array: number[], scale: number): number[]{
+    let arrayForChart = []
+
+    for (let i = 0; i < array.length; i += scale){
+        let average = 0
+        for (let j = 0; j < scale; j++){
+            average += array[i + (j + 1)]
+        }
+        arrayForChart.push(average / scale)
+    }
+
+    return arrayForChart
 }
