@@ -25,16 +25,22 @@ const Home: FC<propsHomeType & dPropsHomeType> = (props) => {
 
             <div className={st.home}>
                 <div className={st.settingsBar}>
-                    <ToggleSwitch description={"errorAudioHandler"} checked={props.isPlayAudio} name={"Audio"} onChange={props.setAudioStatus}/>
-                    <ToggleSwitch description={"timerStatusHandler"} checked={props.isTimer} name={"Timer"} onChange={props.setTimerStatus}/>
+                    <ToggleSwitch description={"errorAudioHandler"} checked={props.isPlayAudio} name={"Audio"}
+                                  onChange={props.setAudioStatus}/>
+                    <ToggleSwitch description={"timerStatusHandler"} checked={props.isTimer} name={"Timer"}
+                                  onChange={props.setTimerStatus}/>
                     {
-                        props.started ? (props.isTimer ? <TimerContainer/> : ""): (props.length > 0 ? <ResultsContainer/> : "")
+                        props.started ? (props.isTimer ? <TimerContainer/> : "") : (props.length > 0 ?
+                            <ResultsContainer/> : "")
                     }
                 </div>
 
-                <KeysContainer/>
-                <WordsContainer/>
-                {props.started ? <KeyboardContainer/> : ""}
+                <div className={st.main}>
+                    <KeysContainer/>
+                    <WordsContainer/>
+                    {props.started ? <KeyboardContainer/> : ""}
+                </div>
+
             </div>
         </>
     )

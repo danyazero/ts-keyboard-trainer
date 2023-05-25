@@ -68,7 +68,7 @@ const Results: FC<propsResultsType & dPropsResultsType> = (props) => {
             <div className={st.results + (isClosed ? " " + st.closed : "")}>
                 <div className={st.header}>
                     <h2 className={st.headerText}>Результати: </h2>
-                    <div style={{opacity: "50%"}} onClick={closeButtonHandler}>close</div>
+                    <div style={{opacity: "50%", color: "black"}} onClick={closeButtonHandler}>close</div>
                 </div>
 
                 <div className={st.data}>

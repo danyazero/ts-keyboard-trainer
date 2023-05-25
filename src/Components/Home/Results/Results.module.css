@@ -21,6 +21,7 @@
 .headerText{
     margin: 0;
     width: fit-content;
+    color: black;
 }
 
 .closed{
