@@ -1,0 +1,1 @@
+export {WordsContainer} from "./model/WordsContainer"

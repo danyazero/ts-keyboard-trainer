@@ -3,7 +3,7 @@ import {getWordsReq} from "./api";
 import {generateRandomWords} from "../Service/GenerateWords";
 import {shuffle, symbolsPerSecondAverage} from "../Service/Service";
 import {RootState} from "./store";
-import home from "../Components/Home/Home";
+import home from "../pages/Home/Home";
 
 const audioError = new Audio("/error.mp3")
 
